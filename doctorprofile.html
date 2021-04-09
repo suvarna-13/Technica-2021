@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="css\Profile.css">
+  <link rel="stylesheet" href="css\sidebar.css">
+  <title></title>
+</head>
+
+<body>
+  <div class="sidenav">
+    <a href="patientprofile.html">patient profile</a>
+    <a href="medical_report_mainpage.html">Patient Details</a>
+    <a href="doctorprofile.html">In care of</a>
+    <a href="prescription.html">Prescriptions</a>
+    <a href="index.html">Logout</a>
+
+  </div>
+  
+  <div class="card">
+    <img src="images\docpic.jpg" alt="avatar" style="width:25%" ;height="25%">
+
+
+
+    <form>
+      <label for="name">First Name</label>
+      <input type="text" id="name" name="name" placeholder="Dr Sneha">
+      <label for="name">Last Name</label>
+      <input type="text" id="name" name="name" placeholder="Sinha">
+
+
+
+      <label for="department">Department</label>
+      <input type="text" id="department" name="department" placeholder="Genral">
+
+      <label for="hospital">Hospital</label>
+      <input type="text" id="hospital" name="hospital" placeholder="Simhadri Hospital">
+      <label for="Gender">Gender</label>
+      <select id="Gender" name="Female">
+        <option value="Female">Female</option>
+        <option value="Male">Male</option>
+        <option value="Other">Other</option>
+      </select>
+      <button type="button" className="but"> Save
+      </button>
+      <a href="medical_report_mainpage.html">
+        <button type="button">Edit Your Details </button>
+      </a>
+    </form>
+  </div>
+
+</body>
+
+</html>
