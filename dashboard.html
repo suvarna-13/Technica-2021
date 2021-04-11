@@ -16,8 +16,8 @@
 
     </div>
     <ul>
-      <li><a href="#" class="active">Home</a></li>
-      <li><a href="index.html">Doctor Near me</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="doctor-search.html">Doctor Near me</a></li>
       <li><a href="report.html">Upload Reports</a></li>
       <li><a href="index.html">About Us</a></li>
       <li><a href="index.html">Contact Us</a></li>
@@ -25,7 +25,7 @@
   </nav>
   <div class="profile">
     <img src="images\user-2.jpg" alt="">
-    <span>Ankita Sharma</span>
+    <span id="name"></span>
   </div>
   <div class="recent-grid">
                 <div class="projects">
@@ -78,6 +78,35 @@
                </div>
             </div>
 
+            <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase.js"></script>
+            <script>
+              var firebaseConfig = {
+                apiKey: "AIzaSyDM4DLdO7ectrIIllwQ4niWTg4DD3d9UGQ",
+                authDomain: "technicapatientprofile.firebaseapp.com",
+                 databaseURL: "https://technicapatientprofile-default-rtdb.firebaseio.com/",
+                projectId: "technicapatientprofile",
+                storageBucket: "technicapatientprofile.appspot.com",
+                messagingSenderId: "32751460449",
+                appId: "1:32751460449:web:8b8184f0d5ed6787e08a20",
+                measurementId: "G-XCQ5DRF4B4"
+              };
+
+              firebase.initializeApp(firebaseConfig);
+
+
+            </script>
+            <script type="text/javascript">
+              var userId=localStorage.getItem('id');
+              firebase.database().ref("" +userId).once("value").then(
+              function(snapshot){
+                var name=(snapshot.val() && snapshot.val().name);
+
+              document.getElementById('name').innerHTML=name;
+
+              });
+
+            </script>
 </body>
 
 </html>
+
