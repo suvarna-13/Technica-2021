@@ -9,6 +9,7 @@
 </head>
 
 <body>
+
   <div class="sidenav">
     <a href="patientprofile.html">patient profile</a>
     <a href="medical_report_mainpage.html">Patient Details</a>
@@ -24,8 +25,17 @@
 
 
     <form>
-      <label for="name">First Name</label>
-      <input type="text" id="name" name="name" placeholder="Your name..">
+      <label for="name">Email</label>
+      <input type="text" id="email" name="email" placeholder="Your email..">
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="name" placeholder="Your Password..">
+
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" placeholder="Your Name..">
+
+      <label for="Mobile">Mobile Number</label>
+      <input type="text" id="mobile" name="Mobile" placeholder="Your Mobile Number..">
 
       <label for="age">Age</label>
       <input type="text" id="age" name="age" placeholder="Your age..">
@@ -33,19 +43,78 @@
       <label for="address">Address</label>
       <input type="text" id="address" name="address" placeholder="Your address..">
 
-      <label for="Mobile">Mobile Number</label>
-      <input type="text" id="Mobile" name="Mobile" placeholder="Your Mobile Number..">
-      <label for="Gender">Gender</label>
-      <select id="Gender" name="Gender">
-        <option value="Female">Female</option>
-        <option value="Male">Male</option>
-        <option value="Other">Other</option>
-      </select>
-      <button type="button" className="but"> Save
-      </button>
 
-    </form>
-  </div>
+      <label for="Gender">Gender</label>
+      <select id="gender" name="Gender">
+         <option value="Female">Female</option>
+         <option value="Male">Male</option>
+         <option value="Other">Other</option>
+       </select>
+
+       <button onclick="RegisterUser()" type="button">Register</button>
+       <button onclick="LoginUser()" type="button">Login</button>
+
+     </form>
+   </div>
+  <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase.js"></script>
+  <script>
+    var firebaseConfig = {
+      apiKey: "AIzaSyDM4DLdO7ectrIIllwQ4niWTg4DD3d9UGQ",
+      authDomain: "technicapatientprofile.firebaseapp.com",
+       databaseURL: "https://technicapatientprofile-default-rtdb.firebaseio.com/",
+      projectId: "technicapatientprofile",
+      storageBucket: "technicapatientprofile.appspot.com",
+      messagingSenderId: "32751460449",
+      appId: "1:32751460449:web:8b8184f0d5ed6787e08a20",
+      measurementId: "G-XCQ5DRF4B4"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+
+    function RegisterUser() {
+      var email = document.getElementById("email").value;
+      var password = document.getElementById("password").value;
+      var name = document.getElementById("name").value;
+      var mobile = document.getElementById("mobile").value;
+      var age = document.getElementById("age").value;
+      var address = document.getElementById("address").value;
+      var gender = document.getElementById("gender").value;
+
+      firebase.auth().createUserWithEmailAndPassword(email,password).then(function() {
+      //alert("User Registartion Successful");
+       var id=firebase.auth().currentUser.uid;
+      firebase.database().ref('' +id).set({
+             name:name,
+             mobile:mobile,
+             Age:age,
+             Address:address,
+             gender:gender,
+      });
+
+
+      }).catch(function(error) {
+        var errorcode = error.code;
+        var errormsg = error.message;
+      });
+    }
+    function LoginUser(){
+      var email = document.getElementById("email").value;
+      var password = document.getElementById("password").value;
+      firebase.auth().signInWithEmailAndPassword(email,password).then(function(){
+
+         var id=firebase.auth().currentUser.uid;
+         window.location.replace("file:///C:/Users/Suvarna%20Lakshmi/Desktop/Hackathons/2021/Technica%202021/Doctor-search/dashboard.html");
+        localStorage.setItem("id",id);
+
+
+
+      }).catch(function(error){
+
+        var errorCode=error.code;
+        var errorMsg=error.message;
+      })
+    };
+  </script>
 </body>
 
 </html>
